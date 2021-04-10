@@ -1,4 +1,4 @@
-/* global Handlebars, utils, dataSource */ // eslint-disable-line no-unused-vars
+/* global Handlebars, utils, dataSource */
 
 
 {
@@ -56,13 +56,14 @@
 
 
   class Product{
-    constructor(id, data,){
+    constructor(id, data){
       const thisProduct = this;
 
         thisProduct.id = id;
         thisProduct.data = data;
 
         thisProduct.renderInMenu();
+        thisProduct.initAccordion();
 
       console.log('new Product:', thisProduct);
     }
@@ -77,7 +78,7 @@
         thisProduct.element = utils.createDOMFromHTML(generatedHTML);
 
         /* find menu container */ 
-        const menuContainer = document.querySelector(select.containerOf.menu)
+        const menuContainer = document.querySelector(select.containerOf.menu);
 
         /* add element to menu */
         menuContainer.appendChild(thisProduct.element);
@@ -89,13 +90,14 @@
       
           /* find the clickable trigger (the element that should react to clicking) */
           const clickableTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
+          console.log(clickableTrigger);
           
       
           /* START: add event listener to clickable trigger on event click */
           clickableTrigger.addEventListener('click', function(event) {
             
             /* prevent default action for event */
-            event.preventDeafult();
+            event.preventDefualt();
       
             /* find active product (product that has active class) */
             const activeProduct = document.querySelector('.product.active');
@@ -105,12 +107,13 @@
             if (activeProduct !==null && activeProduct !==thisProduct.element){
               activeProduct.classList.remove('active');
             }
-     
+          
             /* toggle active class on thisProduct.element */
-            thisProduct.element.classList(select.menuProduct.clickable);
+            thisProduct.element.classList.toogle(classNames.menuProduct.wrapperActive);
           });
         }
       }
+      
     
    
 
