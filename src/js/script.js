@@ -65,8 +65,10 @@
       thisProduct.renderInMenu();
       thisProduct.getElements();
       thisProduct.initAccordion();
+      thisProduct.initAmountWidget();
       thisProduct.processOrder();
       thisProduct.initOrderForm();
+      
       
       
 
@@ -100,6 +102,45 @@
       thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+    }
+
+    initAccordion(){
+      const thisProduct = this;
+  
+      /* find the clickable trigger (the element that should react to clicking) */
+      const clickableTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
+      console.log(clickableTrigger);
+      
+  
+      /* START: add event listener to clickable trigger on event click */
+      thisProduct.accordionTrigger.addEventListener('click', function(event) {
+        console.log(thisProduct);
+        
+        /* prevent default action for event */
+        event.preventDefault();
+  
+        /* find active product (product that has active class) */
+        const activeProduct = document.querySelector('.product.active');
+        
+  
+        /* if there is active product and it's not thisProduct.element, remove class active from it */
+        if (activeProduct !==null && activeProduct !==thisProduct.element){
+          activeProduct.classList.remove('active');
+        }
+      
+        /* toggle active class on thisProduct.element */
+        thisProduct.element.classList.toggle(classNames.menuProduct.wrapperActive);
+      });
+    }
+    
+    initAmountWidget(){
+      const thisProduct = this;
+      
+
+      const thisWidget = this;
+      thisProduct.amountWidget = new AmountWidget (thisProduct.amountWidgetElem);
+      console.log('AmountWidget', thisWidget);
+      
     }
 
     initOrderForm() {
@@ -171,40 +212,14 @@
           }
         }
       }
-    
-    
+   
       // update calculated price in the HTML
       thisProduct.priceElem.innerHTML = price;
     }
-    initAccordion(){
-      const thisProduct = this;
-  
-      /* find the clickable trigger (the element that should react to clicking) */
-      const clickableTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
-      console.log(clickableTrigger);
-      
-  
-      /* START: add event listener to clickable trigger on event click */
-      thisProduct.accordionTrigger.addEventListener('click', function(event) {
-        console.log(thisProduct);
-        
-        /* prevent default action for event */
-        event.preventDefault();
-  
-        /* find active product (product that has active class) */
-        const activeProduct = document.querySelector('.product.active');
-        
-  
-        /* if there is active product and it's not thisProduct.element, remove class active from it */
-        if (activeProduct !==null && activeProduct !==thisProduct.element){
-          activeProduct.classList.remove('active');
-        }
-      
-        /* toggle active class on thisProduct.element */
-        thisProduct.element.classList.toggle(classNames.menuProduct.wrapperActive);
-      });
-    }
   }
+
+
+  
   const app = {
     initMenu:function(){
       const thisApp = this;
