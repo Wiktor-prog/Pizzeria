@@ -79,7 +79,7 @@
                     <label>
                       <input type="checkbox" name="{{ paramId }}" value="{{ @key }}" id="{{ @key }}" {{#if default}}checked{{/if}}>
                       <span class="checkbox__checkmark"></span>
-                      {{{ label }}} (ZŁ {{{ price }}})
+                      {{{ label }}} ($ {{{ price }}})
                     </label>
                   </div>
                   {{/each}}
@@ -91,7 +91,7 @@
                   {{#each options}}
                   <div class="checkbox checkbox--round"> <!-- radio -->
                     <label>
-                      {{{ label }}} (ZŁ {{{ price }}})
+                      {{{ label }}} ($ {{{ price }}})
                       <input type="radio" name="{{ paramId }}" value="{{ @key }}" id="{{ @key }}" {{#if default}}checked{{/if}}>
                       <span class="checkbox__checkmark"></span>
                     </label>
@@ -115,11 +115,11 @@
                 <div class="widget-amount"> <!-- widget-amount -->
                   <h3 class="product__params-title">Select quantity</h3>
                   <a class="btn-quantity" href="#less"><i class="fas fa-minus"></i></a>
-                  <input type="text" name="amount" value="1">
+                  <input type="text" name="amount">
                   <a class="btn-quantity" href="#more"><i class="fas fa-plus"></i></a>
                 </div>
                 <p class="product__total-price">
-                  Total: ZŁ <span class="price">{{{ price }}}</span>
+                  Total: $ <span class="price">{{{ price }}}</span>
                 </p>
                 <div> <!-- add-to-cart -->
                   <a class="btn-primary" href="#add-to-cart">Add to cart</a>
