@@ -150,9 +150,10 @@
       const thisWidget = this;
       thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
       thisProduct.amountWidgetElem.addEventListener('updated', function() {
-        
+        thisProduct.processOrder();
       });
       console.log('AmountWidget', thisWidget);
+      
     }
 
     initOrderForm() {
@@ -227,10 +228,10 @@
       }
 
       // update calculated price in the HTML
-      
+      price *= thisProduct.amountWidget.value;
       thisProduct.priceElem.innerHTML = price;
 
-      price *= thisProduct.amountWidget.value;
+      
       
     }
   }
@@ -273,7 +274,9 @@
     initActions(){
       const thisWidget = this;
       thisWidget.input.addEventListener('change', function(event){
+        
         event.preventDefault();
+        
         thisWidget.setValue(thisWidget.input.value);
       });
       thisWidget.linkDecrease.addEventListener('click', function(event){
@@ -284,7 +287,11 @@
       thisWidget.linkIncrease.addEventListener('click', function(event){
         event.preventDefault();
         thisWidget.setValue(thisWidget.value + 1);
+        
+        thisWidget.announce();
       });
+      
+      
     }
     announce(){
       const thisWidget = this;
