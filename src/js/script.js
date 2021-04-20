@@ -277,7 +277,7 @@
     addToCart(){
       const thisProduct = this;
 
-      app.cart.add(thisProduct.prepareCartProduct);
+      app.cart.add(thisProduct.prepareCartProduct());
     }
     
     prepareCartProduct(){
@@ -398,6 +398,7 @@
 
       thisCart.getElements(element);
       thisCart.initActions();
+      
       
       console.log('new Cart', thisCart); 
     
