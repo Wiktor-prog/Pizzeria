@@ -428,15 +428,52 @@
       const generatedHTML = templates.cartProduct(menuProduct);
   
       /* create elements using utils.createElementFromHTML */
-      const generateDOM = utils.createDOMFromHTML(generatedHTML);
+      const generatedDOM = utils.createDOMFromHTML(generatedHTML);
 
       /* add element to menu */
-      thisCart.dom.productList.appendChild(generateDOM);
+      thisCart.dom.productList.appendChild(generatedDOM);
       console.log('thisCart.products', thisCart.products);
-     
+      
+      thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
+      console.log('thisCart.product' , thisCart.products);
     }
   }
-    
+
+  class CartProduct {
+    constructor(menuProduct, element){
+      const thisCartProduct = this;
+
+      thisCartProduct.menuProduct = menuProduct;
+      thisCartProduct.element = element;
+      thisCartProduct.id = menuProduct.id;
+      thisCartProduct.getElements(element);
+      thisCartProduct.initAmountWidget();
+      console.log('new CartProduct' , thisCartProduct);
+    }
+    getElements(element){
+      const thisCartProduct = this;
+      thisCartProduct.dom = {};
+      thisCartProduct.dom.wrapper = element;
+      thisCartProduct.dom.amountWidget = element.querySelector(select.cartProduct.amountWidget);
+      thisCartProduct.dom.price = element.querySelector(select.cartProduct.price);
+      thisCartProduct.dom.edit = element.querySelector(select.cartProduct.edit);
+      thisCartProduct.dom.remove = element.querySelector(select.cartProduct.remove);
+      
+      
+    }
+    initAmountWidget(){
+      const thisCartProduct = this;
+
+      
+      thisCartProduct.amountWidget = new AmountWidget(thisCartProduct.dom.amountWidget);
+      thisCartProduct.dom.amountWidget.addEventListener('updated', function() {
+        thisCartProduct.price = thisCartProduct.amount * thisCartProduct.priceSingle;
+        thisCartProduct.amount = thisCartProduct.amountWidget.value;
+      });
+      console.log('initAmountWidget', thisCartProduct);
+    }
+  }
+
 
   const app = {
     initMenu: function () {
