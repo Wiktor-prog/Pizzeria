@@ -72,6 +72,11 @@
       defaultMin: 1,
       defaultMax: 10,
     },
+    db: {
+      url: '//localhost:3131',
+      product: 'product',
+      order: 'order',
+    },
     // CODE CHANGED
     // CODE ADDED START
     cart: {
@@ -456,11 +461,11 @@
       thisCart.subtotalPrice = 0;
       for(let product of thisCart.products){
         thisCart.totalNumber = thisCart.totalNumber + product.menuProduct.amount;
-        thisCart.subtotalPrice = thisCart.subtotalPrice + product.price;
+        thisCart.subtotalPrice = thisCart.subtotalPrice + product.menuProduct.price;
       }
       
 
-      thisCart.dom.subTotalPrice.innerHTML = thisCart.subTotalPrice;
+      thisCart.dom.subTotalPrice.innerHTML = thisCart.subtotalPrice;
       thisCart.dom.totalNumber.innerHTML= thisCart.totalNumber;
       thisCart.totalPrice = thisCart.subTotalPrice + thisCart.deliveryFee;
       
@@ -547,14 +552,32 @@
 
       //('thisApp.data:', thisApp.data);
       for (let productData in thisApp.data.products) {
-        new Product(productData, thisApp.data.products[productData]);
+        new Product(thisApp.data.products[productData].id, thisApp.data.products[productData]);
       }
     },
 
     initData: function () {
       const thisApp = this;
+      
 
-      thisApp.data = dataSource;
+      thisApp.data = {};
+      const url = settings.db.url + '/' + settings.db.product;
+
+      fetch(url)
+        .then(function(rawResponse){
+          return rawResponse.json();
+        })
+        .then(function(parsedResponse){
+          console.log('parsedResponse' , parsedResponse);
+
+          /*save parsedResponse as thisApp.data.products */
+          thisApp.data.products = parsedResponse;
+
+          /* execute initMenu method */
+          thisApp.initMenu();
+        });
+      console.log('thisApp.data' , JSON.stringify(thisApp));
+
     },
 
     init: function () {
@@ -566,7 +589,6 @@
       //console.log('templates:', templates);
 
       thisApp.initData();
-      thisApp.initMenu();
       thisApp.initCart();
     },
 

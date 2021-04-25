@@ -29,6 +29,7 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "app.json": "^0.14.0",
         "json-server": "^0.16.3"
     },
     "devDependencies": {
