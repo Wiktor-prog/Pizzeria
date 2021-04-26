@@ -1,4 +1,4 @@
-/* global Handlebars, utils, dataSource */
+/* global Handlebars, utils */
 
 {
   ('use strict');
@@ -593,13 +593,14 @@
     
     init: function() {
       const thisApp = this;
-      //console.log('*** App starting ***');
-      //console.log('thisApp:', thisApp);
-      //console.log('classNames:', classNames);
-      //console.log('settings:', settings);
-      //console.log('templates:', templates);
+      console.log('*** App starting ***');
+      console.log('thisApp:', thisApp);
+      console.log('classNames:', classNames);
+      console.log('settings:', settings);
+      console.log('templates:', templates);
+      
     
-      thisApp.initPages();
+      //thisApp.initPages();
       thisApp.initData();
     },
   };
