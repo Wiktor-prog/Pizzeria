@@ -276,8 +276,14 @@
     addToCart(){
       const thisProduct = this;
 
-      app.cart.add(thisProduct.prepareCartProduct());
-  
+      const event = new CustomEvent('add-to-cart', {
+        bubbles: true,
+        detail: {
+          product: this.prepareCartProduct(),
+        },
+      });
+
+      thisProduct.element.dispatchEvent(event);
     }
     prepareCartProduct(){
       const thisProduct = this;
@@ -644,6 +650,8 @@
     
       //thisApp.initPages();
       thisApp.initData();
+      thisApp.initCart();
+      
     },
   };
   app.init();
