@@ -1,8 +1,6 @@
 /* global Handlebars, utils */
-
 {
   ('use strict');
-
   const select = {
     templateOf: {
       menuProduct: '#template-menu-product',
@@ -53,7 +51,6 @@
     },
   // CODE ADDED END
   };
-
   const classNames = {
     menuProduct: {
       wrapperActive: 'active',
@@ -65,7 +62,6 @@
     },
   // CODE ADDED END
   };
-
   const settings = {
     amountWidget: {
       defaultValue: 1,
@@ -84,14 +80,12 @@
     },
   // CODE ADDED END
   };
-
   const templates = {
     menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
     // CODE ADDED START
     cartProduct: Handlebars.compile(document.querySelector(select.templateOf.cartProduct).innerHTML),
     // CODE ADDED END
   };
-
   class Product {
     constructor(id, data) {
       const thisProduct = this;
@@ -283,8 +277,8 @@
       const thisProduct = this;
 
       app.cart.add(thisProduct.prepareCartProduct());
+  
     }
-    
     prepareCartProduct(){
       const thisProduct = this;
       
@@ -329,8 +323,7 @@
 
       return params;
     }  
-  }
-          
+  }      
   class AmountWidget {
     constructor(element) {
       const thisWidget = this;
@@ -419,6 +412,10 @@
       thisCart.dom.subTotalPrice = element.querySelector(select.cart.subtotalPrice);
       thisCart.dom.totalPrice = element.querySelectorAll(select.cart.totalPrice);
       thisCart.dom.totalNumber = element.querySelector(select.cart.totalNumber);
+      thisCart.dom.form = element.querySelector(select.cart.form);
+      thisCart.dom.phone = element.querySelector(select.cart.phone);
+      thisCart.dom.address = element.querySelector(select.cart.address);
+      
     }
     initActions(){
       const thisCart = this;
@@ -433,7 +430,40 @@
       thisCart.dom.productList.addEventListener('remove', function(event) {
         thisCart.remove(event.detail.cartProduct);
       });
+      thisCart.dom.form.addEventListener('submit', function(event){
+        event.preventDefault();
+        thisCart.sendOrder();
+        
+      });
+    }
+
+    sendOrder(){
+      const thisCart = this;
+      const url = settings.db.url + '/' + settings.db.order;
+
+      const payload = {};
+
+      payload.address = thisCart.dom.address;
+      payload.phone = thisCart.dom.phone;
+      payload.totalPrice = thisCart.totalPrice;
+      payload.subTotalPrice = thisCart.subTotalPrice;
+      payload.totalNumber = thisCart.totalNumber;
+      payload.deliveryFee = thisCart.deliveryFee;
+      payload.products = [];
+
+      for(let prod of thisCart.products) {
+        payload.products.push(prod.getData());
+      }
       
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      };
+      
+      fetch(url, options);
     }
     add(menuProduct){
       const thisCart = this;
@@ -485,7 +515,6 @@
       thisCart.update();
     }
   }
-  
   class CartProduct {
     constructor(menuProduct, element){
       const thisCartProduct = this;
@@ -498,6 +527,23 @@
       thisCartProduct.initActions();
       //console.log('new CartProduct' , thisCartProduct);
     }
+
+    getData(){
+      const thisCartProduct = this;
+
+      const productSummary = {
+
+        id: thisCartProduct.id,
+        amount: thisCartProduct.amount,
+        price: thisCartProduct.price,
+        priceSingle: thisCartProduct.priceSingle,
+        name: thisCartProduct.name,
+        params: thisCartProduct.params,
+      };
+      return productSummary;
+    }
+  
+
     getElements(element){
       const thisCartProduct = this;
       thisCartProduct.dom = {};
@@ -506,8 +552,6 @@
       thisCartProduct.dom.price = element.querySelector(select.cartProduct.price);
       thisCartProduct.dom.edit = element.querySelector(select.cartProduct.edit);
       thisCartProduct.dom.remove = element.querySelector(select.cartProduct.remove);
-      
-      
     }
     initAmountWidget(){
       const thisCartProduct = this;
@@ -544,8 +588,6 @@
       });
     }
   }
-
-
   const app = {
     initMenu: function () {
       const thisApp = this;
