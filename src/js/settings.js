@@ -7,8 +7,8 @@ export const select = {
   containerOf: {
     menu: '#product-list',
     cart: '#cart',
-    pages: 'pages',
-    
+    pages: '#pages',
+    booking: '.booking-wrapper',
   },
   all: {
     menuProducts: '#product-list > .product',
@@ -48,6 +48,10 @@ export const select = {
     price: '.cart__product-price',
     edit: '[href="#edit"]',
     remove: '[href="#remove"]',
+  },
+  booking: {
+    peopleAmount: '.people-amount',
+    hoursAmount: '.hours-amount',
   },
   // CODE ADDED END
 };

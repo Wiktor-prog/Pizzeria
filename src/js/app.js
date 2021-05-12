@@ -1,8 +1,7 @@
 import {settings, select, classNames} from './settings.js';
-import Product from './components/Product.js';
 import Cart from './components/Cart.js';
+import Product from './components/Product.js';
 import Booking from './components/Booking.js';
-
 
 const app = {
   initPages: function (){
@@ -41,6 +40,18 @@ const app = {
     }
   },
 
+  initMenu: function () {
+    const thisApp = this;
+
+    console.log('thisApp.data:', thisApp.data);
+    for (let productData in thisApp.data.products) {
+      new Product(
+        thisApp.data.products[productData].id,
+        thisApp.data.products[productData]
+      );
+    }
+  },
+
   activatePage: function(pageId){
     const thisApp = this;
 
@@ -54,17 +65,6 @@ const app = {
       link.classList.toogle(
         classNames.nav.active, 
         link.getAttribute('href') == '#' + pageId
-      );
-    }
-  },
-  initMenu: function () {
-    const thisApp = this;
-
-    console.log('thisApp.data:', thisApp.data);
-    for (let productData in thisApp.data.products) {
-      new Product(
-        thisApp.data.products[productData].id,
-        thisApp.data.products[productData]
       );
     }
   },
@@ -118,11 +118,12 @@ const app = {
     //console.log('settings:', settings);
     //console.log('templates:', templates);
 
+    thisApp.initPages();
+
     thisApp.initData();
+    //thisApp.initMenu();
     thisApp.initCart();
     thisApp.initBooking();
-    thisApp.initPages();
-    //thisApp.initMenu();
   },
 };
 app.init();
