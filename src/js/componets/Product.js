@@ -1,6 +1,6 @@
-import {select, classNames, templates} from './settings.js';
-import utils from './utils.js';
-import AmountWidget from './componets/AmontWidget';
+import {select, classNames, templates} from '../settings.js';
+import AmountWidget from './AmountWidget';
+import utils from '../utils.js';
 
 
 
@@ -17,6 +17,7 @@ class Product {
     thisProduct.initAmountWidget();
     thisProduct.processOrder();
     thisProduct.initOrderForm();
+    thisProduct.prepareCartProductParams();
    
     thisProduct.dom = {};
    

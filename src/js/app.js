@@ -1,6 +1,7 @@
-import {settings, select, classNames, templates} from './settings.js';
-import Product from './componets/Product.js';
-import Cart from './componets/Cart.js';
+import {settings, select, classNames} from './settings.js';
+import Product from './components/Product.js';
+import Cart from './components/Cart.js';
+import Booking from './components/Booking.js';
 
 
 const app = {
@@ -105,22 +106,23 @@ const app = {
   initBooking: function(){
     const thisApp = this;
 
-    thisApp.BookingElement = document.querySelector(select.containerOf.booking);
-    thisApp.Booking = new Booking (thisApp.BookingElement);
+    const element = document.querySelector(select.containerOf.booking);
+    thisApp.booking = new Booking(element);
   },
 
   init: function () {
     const thisApp = this;
-    console.log('*** App starting ***');
-    console.log('thisApp:', thisApp);
-    console.log('classNames:', classNames);
-    console.log('settings:', settings);
-    console.log('templates:', templates);
+    //console.log('*** App starting ***');
+    //console.log('thisApp:', thisApp);
+    //console.log('classNames:', classNames);
+    //console.log('settings:', settings);
+    //console.log('templates:', templates);
 
-    thisApp.initPages();
     thisApp.initData();
     thisApp.initCart();
     thisApp.initBooking();
+    thisApp.initPages();
+    //thisApp.initMenu();
   },
 };
 app.init();
