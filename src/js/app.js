@@ -57,12 +57,12 @@ const app = {
 
     /*add class "active" to matchng pages, remove from non-matching */
     for(let page of thisApp.pages){
-      page.classList.toogle(classNames.pages.active, page.id == pageId);
+      page.classList.toggle(classNames.pages.active, page.id == pageId);
     }
 
     /*add class "active" to matchng LInks, remove from non-matching */
     for(let link of thisApp.navLinks){
-      link.classList.toogle(
+      link.classList.toggle(
         classNames.nav.active, 
         link.getAttribute('href') == '#' + pageId
       );
@@ -121,7 +121,7 @@ const app = {
     thisApp.initPages();
 
     thisApp.initData();
-    //thisApp.initMenu();
+    thisApp.initMenu();
     thisApp.initCart();
     thisApp.initBooking();
   },
