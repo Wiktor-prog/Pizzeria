@@ -5,27 +5,33 @@ class Home {
   constructor(element) {
     const thisHome = this;
 
-    thisHome.render(element);
+    thisHome.getElements(element);
     thisHome.initCarousel();
   }
 
-  render(element) {
+  getElements(element) {
     const thisHome = this;
 
-    const generatedHTML = templates.homePage();
-    
     thisHome.dom = {};
     thisHome.dom.wrapper = element;
-    thisHome.dom.wrapper.innerHTML = generatedHTML;
-    thisHome.dom.carousel = thisHome.dom.wrapper.querySelector(select.widgets.home.carousel);
+
+    thisHome.dom.flickityWrapper = document.querySelector('.carousel-wrapper');
   }
+
+  
 
   initCarousel() {
     const thisHome = this;
 
-    window.onload = function() {
-      thisHome.carousel = new Carousel(thisHome.dom.carousel);
-    };
+    const flkty = new Flickity( thisHome.dom.flickityWrapper, {
+      pageDots: false,
+      cellAlign: 'left',
+      contain: true,
+      pageDots: false,
+      cellAlign: 'left',
+      contain: true
+    });
+    
   }
 }
 
