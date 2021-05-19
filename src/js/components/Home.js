@@ -1,5 +1,4 @@
 import {select, templates} from '../settings.js';
-import Carousel from '../components/Carousel.js';
 
 class Home {
   constructor(element) {
@@ -11,19 +10,15 @@ class Home {
 
   getElements(element) {
     const thisHome = this;
-
     thisHome.dom = {};
     thisHome.dom.wrapper = element;
 
-    thisHome.dom.flickityWrapper = document.querySelector('.carousel-wrapper');
+    thisHome.dom.flickityWrapper = document.querySelector('.carousel');
   }
-
-  
-
   initCarousel() {
     const thisHome = this;
 
-    const flkty = new Flickity( thisHome.dom.flickityWrapper, {
+    const flkty = new Flickity( thisHome.dom.flickitycarousel, {
       pageDots: false,
       cellAlign: 'left',
       contain: true,
