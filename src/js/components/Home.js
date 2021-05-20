@@ -18,16 +18,16 @@ class Home {
   initCarousel() {
     const thisHome = this;
 
-    const flkty = new Flickity( thisHome.dom.flickitycarousel, {
-      pageDots: false,
-      cellAlign: 'left',
-      contain: true,
-      pageDots: false,
+    const flkty = new Flickity( thisHome.dom.flickityWrapper, {
+      // options
       cellAlign: 'left',
       contain: true
     });
-    
-  }
+    }
 }
 
 export default Home;
+
+
+
+
