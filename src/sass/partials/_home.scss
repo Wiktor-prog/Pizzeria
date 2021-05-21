@@ -11,8 +11,8 @@
 .order {
   background-image: url("https://i.postimg.cc/MHp046Gf/2021-05-21-04-55-13-Zdj-cia.png");
   margin-top: 50px;
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-left: 3px;
+  
   width: 25%;
   height: 100px;
   border-radius: 5px;
@@ -63,8 +63,37 @@
 
 //Karuzela 
 .carousel-cell {
-  height: 100%;
-  margin-left: 50%;
+  width: 50%;
+  height: auto;
+  margin-right: 10px;
+  margin-left: 25%;
   margin-top: 100px;
-  width: 100%;
+  display: flex;
+  
 }
+
+.title-description {
+  font-family: "Open Sans", sans-serif;
+  font-size: 20px;
+  margin-left: 10%;
+  padding-top: 10px;
+  
+}
+
+.content-description { 
+  font-family: "Open Sans", sans-serif;
+  margin-left: 10%;
+  font-size: 16px;
+  padding-top: 10px;
+  
+}
+
+//Galeria
+.gallery-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 80px;
+  padding-bottom: 30px;
+}
+
