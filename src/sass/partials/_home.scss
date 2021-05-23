@@ -1,9 +1,11 @@
+
 //opcje//
 .options {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   position: relative;
+  
 }
   
 //zamówienia//
@@ -18,10 +20,12 @@
   border-radius: 5px;
 }
   
-.orderinfo-h2 {
+.orderinfo {
   text-align: center;
   font-size: 25px;
   color: #fafafa;
+  text-decoration: none;
+  
 }
   
 //Rezerwacje//
@@ -29,18 +33,19 @@
 .booking {
   background-image: url("https://i.postimg.cc/QtH1k6Yc/2021-05-21-04-59-59-pizza-2-jpg-Zdj-cia.png");
   margin-top: 50px;
+  //transform: translateY(-10px);
   margin-left: 5px;
   margin-right: 5px;
   width: 48%;
   height: 100px;
   border-radius: 5px;
 }
-  
-.reservinfo-h2 {
+
+.reservinfo {
   text-align: center;
   font-size: 25px;
   color: #fafafa;
-  
+  text-decoration: none;
 }
 //otwarcie parasola
 .open-hours {
@@ -48,18 +53,16 @@
   margin-left: 7px;
   margin-right: 7px;
   border-radius: 5px;
-  padding-bottom: 2px;
-  
 }
 
-.openinfo-h2{
+.openinfo{
   text-align: center;
   padding-bottom: 2px;
   font-family: "Open Sans", sans-serif;
   font-size: 25px;
   color: #fafafa;}
   
-.openinfo-h4{
+.openinfo {
   text-align: center;
   font-family: "Open Sans", sans-serif;
   font-size: 15px;
@@ -67,10 +70,7 @@
 
 //Karuzela 
 .carousel-cell {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  position: relative;
+  
   margin-top: 100px;
   display: flex;
 }
@@ -80,6 +80,7 @@
   font-size: 18px;
   margin-left: 10%;
   padding-top: 10px;
+  display: inline-flex;
   
 }
 
@@ -89,27 +90,49 @@
   font-size: 14px;
   
   
+  
 }
 
 //Galeria
 .gallery-wrapper {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
   padding-top: 80px;
+  justify-content: space-around;
+  flex-wrap: wrap;
   padding-bottom: 30px;
+
+  .gallery-box {
+    position: relative;
+
+    .gallery-overlay {
+      @include center();
+      opacity: 0;
+      text-align: center;
+    }
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.6;
+
+      .gallery-overlay {
+        opacity: 1;
+        text-align: center;
+
+        .gallery-link {
+          color: #fafafa;
+          font-size: 30px;
+          letter-spacing: 15px;
+
+          &:hover {
+            opacity: 0.9;
+            color: #ff6b6b;
+          }
+        }
+      }
+    }
+  }
 }
 
-.gallery-overlay {
-  text-align: center; 
-}
-
-.gallery-link {
-  color: #ff6b6b;
-  font-size: 30px;
-  letter-spacing: 15px;
-  padding-top: 50%;
-}
 
 .footer-wrapper{
   text-align: center;
