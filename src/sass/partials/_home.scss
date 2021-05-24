@@ -81,16 +81,12 @@
   margin-left: 10%;
   padding-top: 10px;
   display: inline-flex;
-  
 }
 
 .content-description { 
   font-family: "Open Sans", sans-serif;
   margin-left: 10%;
   font-size: 14px;
-  
-  
-  
 }
 
 //Galeria
@@ -101,12 +97,12 @@
   flex-wrap: wrap;
   padding-bottom: 30px;
   max-width: 100%;
-  width: 32%;
   
-
   .gallery-box {
     position: relative;
     width: 32%;
+    flex-wrap: wrap;
+    display: flex;
 
     .gallery-overlay {
       @include center();
@@ -136,7 +132,6 @@
     }
   }
 }
-
 
 .footer-wrapper{
   text-align: center;
