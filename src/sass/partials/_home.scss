@@ -97,12 +97,16 @@
 .gallery-wrapper {
   display: flex;
   padding-top: 80px;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-wrap: wrap;
   padding-bottom: 30px;
+  max-width: 100%;
+  width: 32%;
+  
 
   .gallery-box {
     position: relative;
+    width: 32%;
 
     .gallery-overlay {
       @include center();
