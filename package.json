@@ -4,6 +4,7 @@
     "description": "",
     "main": "index.html",
     "scripts": {
+        
         "init-project": "npm install && npm-run-all init:*",
         "init:dirs": "mkdirp dist src/sass src/css src/vendor src/images src/js",
         "init:files": "touch README.md src/index.html src/sass/style.scss src/js/script.js",
@@ -23,7 +24,7 @@
         "watch:browsersync": "browser-sync start --server dist --files \"dist/**/*\" --ignore \"dist/db/**/*\"",
         "watch:sassprefixer": "onchange \"src/sass/**/*.scss\" -- npm run build-dev",
         "watch:copy": "onchange -e \"**/sass/**/*\" -e \"**/.gitkeep\" \"src/**/*\" -- copyfiles -a -u 1 {{changed}} dist"
-    },
+    },      
     "keywords": [],
     "author": "",
     "license": "ISC",
