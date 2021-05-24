@@ -10,7 +10,6 @@
         "init:gitignore": "curl https://raw.githubusercontent.com/github/gitignore/master/Node.gitignore -o .gitignore",
         "init:gitignore:custom": "echo \"dist\" >> .gitignore",
         "test": "npm-run-all test:*",
-        
         "test:scss": "stylelint src/sass/",
         "build": "npm-run-all build:* test",
         "build:clean": "mkdirp dist",
@@ -31,7 +30,8 @@
     "dependencies": {
         "app.json": "^0.14.0",
         "flatpickr": "^4.6.9",
-        "json-server": "^0.16.3"
+        "json-server": "^0.16.3",
+        "serve": "^11.3.2"
     },
     "devDependencies": {
         "autoprefixer": "^10.2.4",
