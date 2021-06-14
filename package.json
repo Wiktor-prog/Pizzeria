@@ -33,6 +33,7 @@
         "flatpickr": "^4.6.9",
         "json-server": "^0.16.3",
         "serve": "^11.3.2"
+        
     },
     "devDependencies": {
         "autoprefixer": "^10.2.4",
@@ -50,4 +51,5 @@
         "stylelint": "^13.13.0",
         "stylelint-scss": "^3.5.4"
     }
+
 }

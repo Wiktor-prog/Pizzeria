@@ -158,9 +158,7 @@ class Booking {
     const genetratedHTML = templates.bookingWidget();
 
     thisBooking.dom = {};
-
     thisBooking.dom.wrapper = wrapper;
-
     thisBooking.dom.wrapper.innerHTML = genetratedHTML;
 
     thisBooking.dom.peopleAmount = document.querySelector(select.booking.peopleAmount);
@@ -181,6 +179,7 @@ class Booking {
     const thisBooking = this;
 
     thisBooking.peopleAmount = new AmountWidget(thisBooking.dom.peopleAmount);
+    
     thisBooking.hoursAmount = new AmountWidget(thisBooking.dom.hoursAmount);
 
     thisBooking.datePicker = new DatePicker(thisBooking.dom.datePicker);
@@ -202,13 +201,15 @@ class Booking {
       thisBooking.tableId = clicked.getAttribute(settings.booking.tableIdAttribute);
       thisBooking.tableSelected = parseInt(thisBooking.tableId);
 
-      if(!clicked.classList.contains(classNames.booking.tableBooked) && !clicked.classNames.contains(classNames.booking.tableSelected)) {
+      if(!clicked.classList.contains(classNames.booking.tableBooked) && !clicked.classList.contains(classNames.booking.tableSelected)) {
         thisBooking.removeTable();
         clicked.classList.add(classNames.booking.tableSelected);
         thisBooking.tableNumber = thisBooking.tableSelected;
 
-      } else if (!clicked.classList.contains(classNames.booking.tableBooked) && !clicked.classNames.contains(classNames.booking.tableSelected)) {
+
+      } else if (!clicked.classList.contains(classNames.booking.tableBooked) && !clicked.classList.contains(classNames.booking.tableSelected)) {
         thisBooking.removeTable();
+
 
       } else if (!clicked.classList.contains(classNames.booking.tableBooked)) {
         alert('this table is already taken!');
@@ -221,11 +222,12 @@ class Booking {
     const thisBooking = this;
 
     for(let table of thisBooking.dom.tables){
-      if (table.classList.contains(classNames.booking.tableSelected))
+      if (table.classList.contains(classNames.booking.tableSelected)) {
         table.classList.remove(classNames.booking.tableSelected);
       thisBooking.tableNumber = null;
     }
   }
+}
 
   sendOrder() {
     const thisBooking = this;
